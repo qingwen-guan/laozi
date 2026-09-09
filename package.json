@@ -1,0 +1,26 @@
+{
+  "name": "laozi",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "validate": "tsx src/cli.ts validate",
+    "build": "tsx src/cli.ts build",
+    "build:web": "tsx src/cli.ts build --web",
+    "build:pdf": "tsx src/cli.ts build --pdf",
+    "serve": "tsx src/cli.ts serve --host 0.0.0.0 --port 8765",
+    "test": "tsx --test src/*.test.ts",
+    "typecheck": "tsc --noEmit"
+  },
+  "dependencies": {
+    "@fontsource/noto-serif-sc": "^5.2.8",
+    "@fontsource/noto-serif-tc": "^5.2.8",
+    "marked": "^15.0.12",
+    "yaml": "^2.8.1"
+  },
+  "devDependencies": {
+    "@types/node": "^22.18.1",
+    "@vivliostyle/cli": "^9.6.0",
+    "tsx": "^4.20.5",
+    "typescript": "^5.9.2"
+  }
+}

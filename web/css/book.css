@@ -1,0 +1,204 @@
+:root {
+  --font-hant: "Noto Serif TC", "Source Han Serif TC", "Songti TC", "PMingLiU", serif;
+  --font-hans: "Noto Serif SC", "Source Han Serif SC", "Songti SC", "SimSun", serif;
+  --font-ui: "Noto Serif SC", "Noto Serif TC", serif;
+  --paper: #f7f3ea;
+  --ink: #1c1915;
+  --muted: #5c564c;
+  --rule: #c9bfad;
+  --accent: #7a2e1e;
+  --note: #8a3b12;
+}
+
+html[data-script="hant"] body { font-family: var(--font-hant); }
+html[data-script="hans"] body { font-family: var(--font-hans); }
+
+html {
+  color: var(--ink);
+  background: var(--paper);
+}
+
+body {
+  margin: 0;
+  line-height: 1.85;
+}
+
+html[data-script="hant"] .script-hant,
+html[data-script="hans"] .script-hans {
+  display: contents;
+}
+
+html[data-script="hant"] .script-hans,
+html[data-script="hans"] .script-hant {
+  display: none;
+}
+
+html[data-layer-jiaokan="off"] .layer-jiaokan,
+html[data-layer-yiwen="off"] .layer-yiwen,
+html[data-layer-anyu="off"] .layer-anyu {
+  display: none;
+}
+
+.book {
+  max-width: 42rem;
+  margin: 0 auto;
+  padding: 2.5rem 1.5rem 6rem;
+}
+
+.cover {
+  text-align: center;
+  margin-bottom: 3rem;
+  padding-bottom: 2rem;
+  border-bottom: 1px solid var(--rule);
+}
+
+.cover h1 {
+  font-size: 2.6rem;
+  font-weight: 600;
+  letter-spacing: 0.6em;
+  margin: 0 0 0.6rem;
+  text-indent: 0.6em;
+}
+
+.cover .subtitle {
+  margin: 0;
+  color: var(--muted);
+  letter-spacing: 0.18em;
+}
+
+.toc ol {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.toc a,
+.map-index a {
+  color: inherit;
+  text-decoration: none;
+  border-bottom: 1px dotted var(--rule);
+}
+
+.toc .seq {
+  display: inline-block;
+  min-width: 2em;
+  margin-right: 0.6em;
+  color: var(--muted);
+}
+
+.map-index table {
+  width: 100%;
+  border-collapse: collapse;
+  margin-bottom: 1.2rem;
+}
+
+.map-index td {
+  padding: 0.25rem 0.6rem 0.25rem 0;
+  vertical-align: baseline;
+}
+
+.map-index .empty {
+  color: var(--muted);
+}
+
+.chapter {
+  margin: 3rem 0 4rem;
+}
+
+.chapter-head h2 {
+  font-size: 1.6rem;
+  font-weight: 600;
+  margin: 0.2rem 0 0.4rem;
+}
+
+.chapter-head .seq {
+  margin-right: 0.7em;
+  color: var(--accent);
+}
+
+.pian,
+.maps-line {
+  margin: 0;
+  color: var(--muted);
+  font-size: 0.92rem;
+}
+
+.layer {
+  margin: 1.8rem 0;
+}
+
+.layer h3 {
+  font-size: 0.95rem;
+  font-weight: 600;
+  letter-spacing: 0.35em;
+  color: var(--accent);
+  margin: 0 0 0.8rem;
+  padding-bottom: 0.3rem;
+  border-bottom: 1px solid var(--rule);
+}
+
+.baiwen p {
+  margin: 0.4rem 0;
+  font-size: 1.18rem;
+  text-align: justify;
+}
+
+.note-ref {
+  color: var(--note);
+  text-decoration: none;
+  font-size: 0.78em;
+  vertical-align: super;
+  margin: 0 0.05em;
+}
+
+.supplied {
+  color: var(--muted);
+}
+
+.notes {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.notes > li {
+  margin: 0 0 1.4rem;
+  padding-left: 0;
+}
+
+.lemma {
+  font-weight: 600;
+  margin: 0 0 0.35rem;
+}
+
+.readings {
+  margin: 0.2rem 0 0.4rem;
+  padding-left: 1.2em;
+  color: var(--muted);
+}
+
+.readings .wit {
+  color: var(--ink);
+}
+
+.missing {
+  font-style: italic;
+}
+
+.choice {
+  margin: 0.2rem 0;
+  color: var(--accent);
+}
+
+.reason p,
+.zongshuo p,
+.layer-yiwen p,
+.layer-anyu p {
+  margin: 0.5rem 0;
+  text-align: justify;
+}
+
+.zongshuo {
+  margin-bottom: 1.2rem;
+  color: var(--muted);
+}

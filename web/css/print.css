@@ -1,0 +1,80 @@
+/* string-set / @page 是印刷用的分页 CSS（Vivliostyle）。编辑器常标成未知属性，不是写错。 */
+.cover h1 {
+  string-set: book-title content();
+}
+
+@page {
+  size: A4;
+  margin: 18mm 16mm 20mm;
+  background: var(--paper);
+  @top-center {
+    content: string(book-title);
+    font-family: "Noto Serif TC", "Noto Serif SC", serif;
+    font-size: 10pt;
+    color: #5c564c;
+    writing-mode: horizontal-tb;
+  }
+  @bottom-center {
+    content: counter(page);
+    font-family: "Noto Serif TC", "Noto Serif SC", serif;
+    font-size: 10pt;
+    writing-mode: horizontal-tb;
+  }
+}
+
+html,
+body {
+  font-size: 11.5pt;
+  background: var(--paper);
+}
+
+.book {
+  max-width: none;
+  padding: 0;
+}
+
+.cover {
+  break-after: page;
+  min-height: 70vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  border: none;
+}
+
+.chapter {
+  break-before: page;
+}
+
+.chapter:first-of-type {
+  break-before: auto;
+}
+
+html[data-dir="v"] {
+  writing-mode: vertical-rl;
+}
+
+html[data-dir="v"] .book {
+  height: auto;
+  padding: 0;
+}
+
+html[data-dir="v"] .cover {
+  min-height: auto;
+  min-width: 70%;
+}
+
+html[data-theme="xianzhuang"] {
+  --paper: #ecd9b0;
+}
+
+html[data-theme="xianzhuang"] {
+  background: #ecd9b0;
+}
+
+html[data-theme="xianzhuang"] .book {
+  box-shadow: none;
+  outline: 2px solid #6d4b24;
+  outline-offset: 8pt;
+  padding: 12pt;
+}

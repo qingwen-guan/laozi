@@ -1,0 +1,259 @@
+<!DOCTYPE html>
+<html lang="zh-Hans">
+<head>
+  <meta charset="utf-8">
+  <title>零件</title>
+</head>
+<body>
+<template id="ui-subtitle">
+判斷本 · 德經在前
+判断本 · 德经在前
+</template>
+
+<template id="ui-toc-heading">
+目錄
+目录
+</template>
+
+<template id="ui-map-heading">
+他本對照
+他本对照
+</template>
+
+<template id="ui-maps-none">
+他本無對應
+他本无对应
+</template>
+
+<template id="ui-pian-de">
+德經
+德经
+</template>
+
+<template id="ui-pian-dao">
+道經
+道经
+</template>
+
+<template id="ui-missing-label">
+殘／缺
+残／缺
+</template>
+
+<template id="ui-choice-from">
+今從
+今从
+</template>
+
+<template id="ui-map-empty-text">
+無對應
+无对应
+</template>
+
+<template id="ui-book-word">
+本書
+本书
+</template>
+
+<template id="ui-heading-jiaokan">
+校記
+校记
+</template>
+
+<template id="ui-heading-yiwen">
+今譯
+今译
+</template>
+
+<template id="ui-heading-anyu">
+按語
+按语
+</template>
+
+<template id="ui-legend-script">
+用字
+</template>
+
+<template id="ui-label-hant">
+繁體
+繁体
+</template>
+
+<template id="ui-label-hans">
+簡體
+简体
+</template>
+
+<template id="ui-legend-dir">
+方向
+</template>
+
+<template id="ui-label-h">
+橫排
+横排
+</template>
+
+<template id="ui-label-v">
+豎排
+竖排
+</template>
+
+<template id="ui-legend-theme">
+外觀
+外观
+</template>
+
+<template id="ui-label-modern">
+現代
+现代
+</template>
+
+<template id="ui-label-xianzhuang">
+線裝
+线装
+</template>
+
+<template id="ui-legend-layer">
+層
+层
+</template>
+
+<template id="css-link">
+<link rel="stylesheet" href="{{href}}">
+</template>
+
+<template id="boot">
+<script type="module" src="{{src}}"></script>
+</template>
+
+<template id="para">
+<p>{{html}}</p>
+</template>
+
+<template id="note-ref">
+<a class="note-ref" href="#jk-{{chapterId}}-{{n}}">〔{{n}}〕</a>
+</template>
+
+<template id="supplied">
+<span class="supplied">〔{{text}}〕</span>
+</template>
+
+<template id="missing">
+<span class="missing">{{label}}</span>
+</template>
+
+<template id="reading">
+<li><span class="wit">{{wit}}</span>：{{body}}</li>
+</template>
+
+<template id="readings">
+<ul class="readings">{{items}}</ul>
+</template>
+
+<template id="zongshuo">
+<div class="zongshuo">{{reason}}</div>
+</template>
+
+<template id="notes">
+<ol class="notes">{{items}}</ol>
+</template>
+
+<template id="choice">
+<p class="choice">{{from}}{{wit}}</p>
+</template>
+
+<template id="toc-item">
+<li><a href="#{{id}}"><span class="seq">{{seq}}</span>{{title}}</a></li>
+</template>
+
+<template id="map-empty">
+<section class="map-group">
+  <h3>{{label}}</h3>
+  <p class="empty">{{text}}</p>
+</section>
+</template>
+
+<template id="map-group">
+<section class="map-group">
+  <h3>{{label}}</h3>
+  <table>
+    <tbody>{{rows}}</tbody>
+  </table>
+</section>
+</template>
+
+<template id="map-row">
+<tr>
+  <td>{{source}}</td>
+  <td><a href="#{{id}}">{{book}}第{{seq}}章 {{title}}</a></td>
+</tr>
+</template>
+
+<template id="layer-baiwen">
+<section class="layer layer-baiwen">
+  <h3>白文</h3>
+  <div class="baiwen">{{html}}</div>
+</section>
+</template>
+
+<template id="layer-jiaokan">
+<section class="layer layer-jiaokan">
+  <h3>{{heading}}</h3>
+  {{html}}
+</section>
+</template>
+
+<template id="layer-yiwen">
+<section class="layer layer-yiwen">
+  <h3>{{heading}}</h3>
+  {{html}}
+</section>
+</template>
+
+<template id="layer-anyu">
+<section class="layer layer-anyu">
+  <h3>{{heading}}</h3>
+  {{html}}
+</section>
+</template>
+
+<template id="attr">
+{{name}}="{{value}}"
+</template>
+
+<template id="toolbar-layer">
+<label><input type="checkbox" name="layer" value="{{value}}"> {{label}}</label>
+</template>
+
+<template id="toolbar-layers">
+<fieldset>
+  <legend>{{legend}}</legend>
+  {{checks}}
+</fieldset>
+</template>
+
+<template id="toolbar">
+<header class="toolbar">
+  <div class="toolbar-brand">{{brand}}</div>
+  <div class="toolbar-groups">
+    <fieldset>
+      <legend>{{legendScript}}</legend>
+      <label><input type="radio" name="script" value="hant"> {{labelHant}}</label>
+      <label><input type="radio" name="script" value="hans"> {{labelHans}}</label>
+    </fieldset>
+    <fieldset>
+      <legend>{{legendDir}}</legend>
+      <label><input type="radio" name="dir" value="h"> {{labelH}}</label>
+      <label><input type="radio" name="dir" value="v"> {{labelV}}</label>
+    </fieldset>
+    <fieldset data-theme-set>
+      <legend>{{legendTheme}}</legend>
+      <label><input type="radio" name="theme" value="modern"> {{labelModern}}</label>
+      <label><input type="radio" name="theme" value="xianzhuang"> {{labelXianzhuang}}</label>
+    </fieldset>
+    {{layerFieldset}}
+  </div>
+</header>
+</template>
+</body>
+</html>

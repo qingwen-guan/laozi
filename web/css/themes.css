@@ -1,0 +1,48 @@
+html[data-theme="modern"] {
+  --paper: #f7f3ea;
+  --ink: #1c1915;
+  --muted: #5c564c;
+  --rule: #c9bfad;
+  --accent: #7a2e1e;
+}
+
+html[data-theme="xianzhuang"] {
+  --paper: #ecd9b0;
+  --ink: #2a1d10;
+  --muted: #6a5133;
+  --rule: #8a6232;
+  --accent: #7a2e1e;
+}
+
+html[data-theme="xianzhuang"] body {
+  background:
+    radial-gradient(circle at 20% 10%, rgba(255, 255, 255, 0.18), transparent 40%),
+    var(--paper);
+}
+
+html[data-theme="xianzhuang"] .book {
+  box-shadow: inset 0 0 0 2px #6d4b24, inset 0 0 0 6px #ecd9b0, inset 0 0 0 7px #8a6232;
+}
+
+html[data-dir="h"][data-theme="xianzhuang"] .book {
+  padding: 2.8rem 2.2rem 5rem;
+}
+
+html[data-dir="v"][data-theme="xianzhuang"] .book {
+  background-image: repeating-linear-gradient(
+    to left,
+    transparent 0,
+    transparent 1.95em,
+    rgba(107, 74, 32, 0.28) 1.95em,
+    rgba(107, 74, 32, 0.28) 2em
+  );
+  padding: 2.2rem 3.2rem;
+}
+
+html[data-theme="xianzhuang"] .cover h1 {
+  letter-spacing: 0.75em;
+}
+
+html[data-theme="xianzhuang"] .layer h3 {
+  color: #6d4b24;
+}

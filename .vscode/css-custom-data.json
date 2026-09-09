@@ -1,0 +1,23 @@
+{
+  "version": 1.1,
+  "properties": [
+    {
+      "name": "string-set",
+      "description": "CSS Generated Content for Paged Media。Vivliostyle 用来把标题送进页眉。普通浏览器网页不认这条，印刷 CSS 里是故意用的。"
+    }
+  ],
+  "atDirectives": [
+    {
+      "name": "@page",
+      "description": "分页媒体页框。Vivliostyle 印刷用。"
+    },
+    {
+      "name": "@top-center",
+      "description": "页眉正中。CSS Paged Media。"
+    },
+    {
+      "name": "@bottom-center",
+      "description": "页脚正中。CSS Paged Media。"
+    }
+  ]
+}

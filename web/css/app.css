@@ -1,0 +1,63 @@
+.toolbar {
+  position: sticky;
+  top: 0;
+  z-index: 5;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.8rem 1.4rem;
+  align-items: end;
+  padding: 0.7rem 1rem 0.8rem;
+  background: color-mix(in srgb, var(--paper) 88%, #fff);
+  border-bottom: 1px solid var(--rule);
+  font-family: var(--font-ui);
+  writing-mode: horizontal-tb;
+}
+
+.toolbar-brand {
+  font-weight: 600;
+  letter-spacing: 0.4em;
+  padding: 0.35rem 0.2rem;
+}
+
+.toolbar-groups {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.7rem 1rem;
+}
+
+.toolbar fieldset {
+  border: 1px solid var(--rule);
+  margin: 0;
+  padding: 0.25rem 0.6rem 0.35rem;
+  min-width: 0;
+}
+
+.toolbar legend {
+  padding: 0 0.3rem;
+  color: var(--muted);
+  font-size: 0.8rem;
+}
+
+.toolbar label {
+  margin-right: 0.55rem;
+  font-size: 0.92rem;
+  white-space: nowrap;
+}
+
+.toolbar input {
+  margin-right: 0.15rem;
+}
+
+.toolbar .is-disabled {
+  opacity: 0.45;
+}
+
+html[data-dir="v"] .toolbar {
+  position: sticky;
+  left: 0;
+}
+
+@media (max-width: 720px) {
+  .cover h1 { letter-spacing: 0.35em; }
+  .toolbar-brand { display: none; }
+}

@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="{{lang}}" data-script="{{script}}" data-dir="{{dir}}" data-theme="{{theme}}" {{webAttrs}}>
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>{{title}}</title>
+  {{css}}
+</head>
+<body>
+  {{toolbar}}
+  <main class="book">
+    <header class="cover">
+      <h1>{{bookTitle}}</h1>
+      <p class="subtitle">{{subtitle}}</p>
+    </header>
+    <nav class="toc">
+      <h2>{{tocHeading}}</h2>
+      <ol>{{tocItems}}</ol>
+    </nav>
+    <section class="map-index" id="maps">
+      <h2>{{mapHeading}}</h2>
+      {{mapGroups}}
+    </section>
+    {{chapters}}
+  </main>
+  {{boot}}
+</body>
+</html>

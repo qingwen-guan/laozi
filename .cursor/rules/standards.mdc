@@ -1,0 +1,14 @@
+---
+description: High bar. Fix nits in the same turn; do not defer cleanup.
+alwaysApply: true
+---
+
+# Standards
+
+Fix "optional" / nit findings in the same turn. Do not ship a hotfix and leave cleanup for the next session.
+
+Do: markup and UI copy live in `web/templates/`; TypeScript only fills data and decides whether a block exists. Print emits one script (`withScript` / `tpl`). Web keeps both scripts for CSS. One source of truth (default PDFs filtered from the legal set; edition names only in `MAP_LABELS`). Conflicting flags error. No empty shells (blank 今译 / 校记 must not render a headed section). No OpenCC / no conversion table.
+
+Don't: concatenate HTML tags in TypeScript. Nest bilingual chrome inside `bothBlock`. Hand-maintain a list that can be derived. Leave dead attributes or no-op flags.
+
+Add tests. Keep `docs/` in sync.
