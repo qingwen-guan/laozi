@@ -3,17 +3,7 @@ import { MAP_ORDER, PIANS, type Bilingual, type MapKey } from "./types.js";
 
 const TOP_KEYS = new Set(["meta", "witnesses", "chapters"]);
 const META_KEYS = new Set(["title"]);
-const CHAPTER_KEYS = new Set([
-  "id",
-  "seq",
-  "pian",
-  "title",
-  "maps",
-  "baiwen",
-  "jiaokan",
-  "yiwen",
-  "anyu",
-]);
+const CHAPTER_KEYS = new Set(["id", "seq", "pian", "title", "maps", "baiwen", "jiaokan", "yiwen", "anyu"]);
 const JIAOKAN_KEYS = new Set(["n", "lemma", "readings", "choice", "reason"]);
 
 export function validateBook(data: unknown): string[] {
@@ -204,9 +194,7 @@ function validateJiaokan(
   const hantNotes = extractNoteNumbers(baiwen.hant);
   const hansNotes = extractNoteNumbers(baiwen.hans);
   if (hantNotes.join(",") !== hansNotes.join(",")) {
-    errors.push(
-      `${p("baiwen")}：简体注号为 ${fmtNotes(hansNotes)}，繁体为 ${fmtNotes(hantNotes)}`,
-    );
+    errors.push(`${p("baiwen")}：简体注号为 ${fmtNotes(hansNotes)}，繁体为 ${fmtNotes(hantNotes)}`);
   }
   const seenBaiwen = new Set<number>();
   for (const n of hantNotes) {

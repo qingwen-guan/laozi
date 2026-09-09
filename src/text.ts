@@ -53,13 +53,7 @@ export function resolveText(
 }
 
 export function extractNoteNumbers(text: string): number[] {
-  const nums: number[] = [];
-  const re = /〔(\d+)〕/g;
-  let m: RegExpExecArray | null;
-  while ((m = re.exec(text)) !== null) {
-    nums.push(Number(m[1]));
-  }
-  return nums;
+  return [...text.matchAll(/〔(\d+)〕/g)].map((m) => Number(m[1]));
 }
 
 export function quote(s: string): string {
@@ -103,9 +97,5 @@ export function formatRange(from: number, to: number): string {
 }
 
 export function escapeHtml(s: string): string {
-  return s
-    .replaceAll("&", "&amp;")
-    .replaceAll("<", "&lt;")
-    .replaceAll(">", "&gt;")
-    .replaceAll('"', "&quot;");
+  return s.replaceAll("&", "&amp;").replaceAll("<", "&lt;").replaceAll(">", "&gt;").replaceAll('"', "&quot;");
 }

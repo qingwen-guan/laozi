@@ -1,0 +1,19 @@
+---
+description: Never mutate git. 准提 means fmt, lint, then write a commit message.
+alwaysApply: true
+---
+
+# Git
+
+Never commit. Never run mutating or destructive git commands. If one is needed, print the exact command and stop; the user types it.
+
+Do not run: `git add`, `git rm`, `git commit`, `git push`, `git pull`, `git merge`, `git rebase`, `git reset`, `git checkout`, `git switch`, `git restore`, `git stash`, `git clean`, `git mv`, `git tag`, or any `--force` / hook-skipping variant.
+
+Read-only is fine: `git status`, `git diff`, `git log`, `git show`.
+
+**准提** means format, lint, then write a commit message. Do not commit.
+
+1. `npm run fmt`
+2. `npm run lint` and `npm run typecheck`
+3. If fmt or lint fails, fix in this turn and re-run. Do not write a ready message on a red tree.
+4. Read status, diff, and recent log; write 1–2 sentences on why, matching this repo's style. If there is nothing to commit, say so.

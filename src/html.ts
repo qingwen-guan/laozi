@@ -2,7 +2,17 @@ import { marked } from "marked";
 import { MAP_LABELS, mapIndex, pickScript } from "./book.js";
 import { tpl, uiPair } from "./template.js";
 import { escapeHtml, formatRange, zhNum } from "./text.js";
-import { MAP_ORDER, type Book, type Chapter, type Dir, type JiaokanItem, type Layers, type PdfCombo, type Script, type Theme } from "./types.js";
+import {
+  MAP_ORDER,
+  type Book,
+  type Chapter,
+  type Dir,
+  type JiaokanItem,
+  type Layers,
+  type PdfCombo,
+  type Script,
+  type Theme,
+} from "./types.js";
 import { UI_LAYERS } from "../web/js/ui-state.js";
 
 type UiLayer = (typeof UI_LAYERS)[number];
@@ -105,9 +115,7 @@ function renderJiaokan(ch: Chapter, witnesses: string[]): string {
   const zong = ch.jiaokan.find((x) => x.n === null);
   const notes = ch.jiaokan.filter((x) => x.n !== null);
   return (
-    (zong
-      ? tpl("zongshuo", { reason: bothBlock((s) => md(pickScript(zong.reason, s))) })
-      : "") +
+    (zong ? tpl("zongshuo", { reason: bothBlock((s) => md(pickScript(zong.reason, s))) }) : "") +
     (notes.length
       ? tpl("notes", {
           items: notes
@@ -146,9 +154,7 @@ function renderChapter(ch: Chapter, book: Book, layers: Layers): string {
       html: bothBlock((s) => renderBaiwen(pickScript(ch.baiwen, s), ch.id, layers)),
     }),
     jiaokanSection:
-      layers === "full" && jiaokan
-        ? tpl("layer-jiaokan", { heading: ui("heading-jiaokan"), html: jiaokan })
-        : "",
+      layers === "full" && jiaokan ? tpl("layer-jiaokan", { heading: ui("heading-jiaokan"), html: jiaokan }) : "",
     yiwenSection:
       layers === "full" && hasCopy(ch.yiwen)
         ? tpl("layer-yiwen", {
@@ -196,9 +202,7 @@ function webHtmlAttrs(book: Book, layers: Layers): string {
 }
 
 function webToolbar(book: Book): string {
-  const layers = presentBookLayers(book).map((value) =>
-    tpl("toolbar-layer", { value, label: ui(`heading-${value}`) }),
-  );
+  const layers = presentBookLayers(book).map((value) => tpl("toolbar-layer", { value, label: ui(`heading-${value}`) }));
   return tpl("toolbar", {
     brand: both((s) => escapeHtml(pickScript(book.meta.title, s))),
     legendScript: ui("legend-script"),
@@ -210,9 +214,7 @@ function webToolbar(book: Book): string {
     legendTheme: ui("legend-theme"),
     labelModern: ui("label-modern"),
     labelXianzhuang: ui("label-xianzhuang"),
-    layerFieldset: layers.length
-      ? tpl("toolbar-layers", { legend: ui("legend-layer"), checks: layers.join("") })
-      : "",
+    layerFieldset: layers.length ? tpl("toolbar-layers", { legend: ui("legend-layer"), checks: layers.join("") }) : "",
   });
 }
 

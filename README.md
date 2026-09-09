@@ -17,6 +17,8 @@
 ```bash
 npm install
 npm test
+npm run fmt
+npm run lint
 npm run typecheck
 npm run validate
 npm run build

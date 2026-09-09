@@ -177,10 +177,7 @@ test("合法 PDF 组合十二种，默认从全表筛", () => {
 test("PDF 开关互斥", () => {
   assert.equal(resolvePdfCombos({ pdf: false, allPdf: false, combos: [] }).length, 8);
   assert.equal(resolvePdfCombos({ pdf: false, allPdf: true, combos: [] }).length, 12);
-  assert.throws(
-    () => resolvePdfCombos({ pdf: true, allPdf: true, combos: [] }),
-    /只能用一种/,
-  );
+  assert.throws(() => resolvePdfCombos({ pdf: true, allPdf: true, combos: [] }), /只能用一种/);
   assert.throws(
     () =>
       resolvePdfCombos({

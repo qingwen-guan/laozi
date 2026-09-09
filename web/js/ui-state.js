@@ -79,7 +79,9 @@ export function readUiState(query, stored, defaults = UI_DEFAULTS) {
   const layers = /** @type {Record<UiLayer, boolean>} */ (
     Object.fromEntries(
       UI_LAYERS.map((key) => {
-        const value = query.has(key) ? flag(query.get(key), flag(stored[key], defaults[key])) : flag(stored[key], defaults[key]);
+        const value = query.has(key)
+          ? flag(query.get(key), flag(stored[key], defaults[key]))
+          : flag(stored[key], defaults[key]);
         return [key, value];
       }),
     )

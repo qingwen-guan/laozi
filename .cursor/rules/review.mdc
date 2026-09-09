@@ -1,0 +1,21 @@
+---
+description: Find a review issue's whole family before listing it; do not drip siblings across rounds.
+alwaysApply: true
+---
+
+# Review
+
+A finding is a seed, not the report. Search the whole family before writing 应改 / 可改. The list must be every instance, not a sample.
+
+Sweep by invariant, not by the file in view. For each finding, grep siblings before listing:
+
+- Tables that can drift (edition names, 篇, axes, legal PDFs)
+- Dead exports, unused params, leftover attributes
+- HTML tags or UI copy built in TypeScript
+- Empty 校记 / 今译 / 按语 still emitting a headed section
+- Print pages carrying web-only attrs or a second script
+
+If that family was already swept, do not re-report the next sibling next round. That means the last review was incomplete.
+
+应改: wrong output, conflicting flags accepted, empty shells, two sources that can drift.  
+可改: a consistency pass already taken across the family. Do not file "the next union could also be derived."

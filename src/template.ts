@@ -12,8 +12,7 @@ function loadParts(): Map<string, string> {
   parts = new Map();
   const src = readFileSync(join(dir, "parts.html"), "utf8");
   const re = /<template\s+id="([a-z0-9-]+)"\s*>([\s\S]*?)<\/template>/g;
-  let m: RegExpExecArray | null;
-  while ((m = re.exec(src)) !== null) {
+  for (const m of src.matchAll(re)) {
     const name = m[1] ?? "";
     if (parts.has(name)) {
       throw new Error(`parts.html 里 id="${name}" 重复`);
@@ -45,7 +44,10 @@ export function fill(template: string, vars: Record<string, string>, name = "tem
 }
 
 export function parseUi(src: string, name: string): { hant: string; hans: string } {
-  const lines = src.split(/\n/).map((l) => l.trim()).filter(Boolean);
+  const lines = src
+    .split(/\n/)
+    .map((l) => l.trim())
+    .filter(Boolean);
   if (lines.length === 1) {
     const text = escapeHtml(lines[0] ?? "");
     return { hant: text, hans: text };

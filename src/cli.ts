@@ -203,7 +203,7 @@ function main(): void {
     console.log(`网页：${path}`);
   }
   if (doPdf) {
-    let combos;
+    let combos: PdfCombo[];
     try {
       combos = resolvePdfCombos({ pdf: args.pdf, allPdf: args.allPdf, combos: args.combos });
     } catch (err) {
