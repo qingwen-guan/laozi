@@ -2,6 +2,9 @@
   "name": "laozi",
   "private": true,
   "type": "module",
+  "engines": {
+    "node": "^22"
+  },
   "scripts": {
     "validate": "tsx src/cli.ts validate",
     "build": "tsx src/cli.ts build",
