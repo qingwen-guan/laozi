@@ -47,6 +47,12 @@ test("工作流用 package.json 里的 Node 版本", () => {
   assert.doesNotMatch(workflow, /^\s*node-version:/m);
 });
 
+test("fmt 与 lint 都处理 TODO.md", () => {
+  const pkg = JSON.parse(read("package.json")) as { scripts: Record<string, string> };
+  assert.match(pkg.scripts.fmt, /TODO\.md/);
+  assert.match(pkg.scripts.lint, /TODO\.md/);
+});
+
 test("构建文档列出全部 npm 脚本，README 不重复", () => {
   const pkg = JSON.parse(read("package.json")) as { scripts: Record<string, string> };
   const scripts = Object.keys(pkg.scripts).sort();

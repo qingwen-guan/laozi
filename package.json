@@ -13,8 +13,8 @@
     "serve": "tsx src/cli.ts serve --host 0.0.0.0 --port 8765",
     "test": "tsx --test src/*.test.ts",
     "typecheck": "tsc --noEmit",
-    "fmt": "biome check --write .",
-    "lint": "biome ci ."
+    "fmt": "biome check --write . && prettier --write TODO.md",
+    "lint": "biome ci . && prettier --check TODO.md"
   },
   "dependencies": {
     "@fontsource/noto-serif-sc": "^5.2.8",
@@ -26,7 +26,11 @@
     "@biomejs/biome": "^2.5.12",
     "@types/node": "^22.18.1",
     "@vivliostyle/cli": "^9.6.0",
+    "prettier": "3.6.2",
     "tsx": "^4.20.5",
     "typescript": "^5.9.2"
+  },
+  "prettier": {
+    "proseWrap": "always"
   }
 }
