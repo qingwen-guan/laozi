@@ -47,6 +47,15 @@ test("工作流用 package.json 里的 Node 版本", () => {
   assert.doesNotMatch(workflow, /^\s*node-version:/m);
 });
 
+test("既有校本的取舍写在问答", () => {
+  const editorial = read("docs/editorial.md");
+  assert.match(editorial, /既有校本/);
+  assert.match(editorial, /meta\.wenda/);
+  const source = read("laozi.yaml");
+  assert.match(source, /為什麼不直接用別人的校本/);
+  assert.match(source, /帛書老子校注/);
+});
+
 test("fmt 与 lint 都处理 TODO.md", () => {
   const pkg = JSON.parse(read("package.json")) as { scripts: Record<string, string> };
   assert.match(pkg.scripts.fmt, /TODO\.md/);
