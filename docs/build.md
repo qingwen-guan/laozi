@@ -10,7 +10,7 @@ npm run validate
 npm run build        # 网页 dist/web，PDF dist/pdf（默认十种）
 npm run build:web
 npm run build:pdf
-npm run serve          # 0.0.0.0:8765
+npm run serve          # 0.0.0.0:8765；just serve 同此
 npm test
 npm run fmt            # Biome 格式化（范围见 biome.json）
 npm run lint           # Biome 检查
