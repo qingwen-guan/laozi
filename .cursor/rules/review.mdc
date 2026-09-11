@@ -1,11 +1,13 @@
 ---
-description: Find a review issue's whole family before listing it; do not drip siblings across rounds.
+description: Sweep a finding's whole family, then fix every instance. No severity tiers.
 alwaysApply: true
 ---
 
 # Review
 
-A finding is a seed, not the report. Search the whole family before writing 应改 / 可改. The list must be every instance, not a sample.
+No 应改 / 可改. Quality is one bar. Wrong output, drift, dead code, leftovers, inconsistent flags, empty shells, and nits are all findings. When reviewing, list the family and fix every instance in the same turn. Do not stop at a report.
+
+A finding is a seed, not the report. Search the whole family before writing it down. The list must be every instance, not a sample.
 
 Sweep by invariant, not by the file in view. For each finding, grep siblings before listing:
 
@@ -17,5 +19,4 @@ Sweep by invariant, not by the file in view. For each finding, grep siblings bef
 
 If that family was already swept, do not re-report the next sibling next round. That means the last review was incomplete.
 
-应改: wrong output, conflicting flags accepted, empty shells, two sources that can drift.  
-可改: a consistency pass already taken across the family. Do not file "the next union could also be derived."
+Do not invent work. "The next union could also be derived" is not a finding.
