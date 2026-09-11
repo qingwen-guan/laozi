@@ -11,8 +11,15 @@ import {
   resolvePdfCombos,
 } from "./html.js";
 
+const sampleWenda = [
+  {
+    q: { hant: "為什麼叫私校本", hans: "为什么叫私校本" },
+    a: { hant: "因為這是未刊稿。", hans: "因为这是未刊稿。" },
+  },
+];
+
 const book = normalizeBook({
-  meta: { title: "老子" },
+  meta: { title: "老子", wenda: sampleWenda },
   witnesses: ["王弼", "帛甲"],
   chapters: [
     {
@@ -67,6 +74,8 @@ test("印刷精简本不生成校记今译按语", () => {
   assert.doesNotMatch(html, /class="layer layer-yiwen"/);
   assert.doesNotMatch(html, /class="layer layer-anyu"/);
   assert.match(html, /class="layer layer-baiwen"/);
+  assert.match(html, /class="wenda"/);
+  assert.match(html, /未刊稿/);
 });
 
 test("印刷只出一套用字，网页保留两套", () => {
@@ -80,9 +89,10 @@ test("印刷只出一套用字，网页保留两套", () => {
     cssHrefs: ["css/book.css"],
   });
   assert.doesNotMatch(print, /script-hans/);
-  assert.doesNotMatch(print, /判断本/);
+  assert.doesNotMatch(print, /德经在前/);
   assert.doesNotMatch(print, /本书/);
-  assert.match(print, /判斷本/);
+  assert.match(print, /class="wenda"/);
+  assert.match(print, /私校本 · 德經在前/);
   assert.match(print, /本書/);
   const web = pageShell({
     book,
@@ -98,8 +108,37 @@ test("印刷只出一套用字，网页保留两套", () => {
   assert.equal([...web.matchAll(/class="map-group"/g)].length, 4);
 });
 
+test("书后问答网页与印刷都出", () => {
+  const web = pageShell({
+    book,
+    script: "hant",
+    dir: "h",
+    theme: "modern",
+    layers: "full",
+    mode: "web",
+    cssHrefs: ["css/book.css"],
+  });
+  assert.match(web, /class="wenda"/);
+  assert.match(web, /href="#wenda"/);
+  assert.match(web, /為什麼叫私校本/);
+  assert.match(web, /因为这是未刊稿/);
+  const print = pageShell({
+    book,
+    script: "hant",
+    dir: "v",
+    theme: "modern",
+    layers: "full",
+    mode: "print",
+    cssHrefs: ["css/book.css"],
+  });
+  assert.match(print, /class="wenda"/);
+  assert.match(print, /為什麼叫私校本/);
+  assert.match(print, /因為這是未刊稿/);
+  assert.doesNotMatch(print, /因为这是未刊稿/);
+});
+
 test("网页写出两套书题供页签与工具栏共用", () => {
-  const titled = { ...book, meta: { title: { hant: "老子", hans: "老子简" } } };
+  const titled = { ...book, meta: { ...book.meta, title: { hant: "老子", hans: "老子简" } } };
   const html = pageShell({
     book: titled,
     script: "hant",
@@ -121,7 +160,7 @@ test("网页写出两套书题供页签与工具栏共用", () => {
 
 test("详本空层不输出空壳", () => {
   const empty = normalizeBook({
-    meta: { title: "老子" },
+    meta: { title: "老子", wenda: sampleWenda },
     witnesses: ["王弼"],
     chapters: [
       {

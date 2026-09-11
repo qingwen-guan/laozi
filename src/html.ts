@@ -219,15 +219,31 @@ function webToolbar(book: Book): string {
 }
 
 function tocItems(book: Book): string {
-  return book.chapters
-    .map((ch) =>
-      tpl("toc-item", {
-        id: escapeHtml(ch.id),
-        seq: zhNum(ch.seq),
-        title: both((s) => escapeHtml(pickScript(ch.title, s))),
-      }),
-    )
-    .join("");
+  return (
+    book.chapters
+      .map((ch) =>
+        tpl("toc-item", {
+          id: escapeHtml(ch.id),
+          seq: zhNum(ch.seq),
+          title: both((s) => escapeHtml(pickScript(ch.title, s))),
+        }),
+      )
+      .join("") + tpl("toc-wenda", { title: ui("heading-wenda") })
+  );
+}
+
+function renderWenda(book: Book): string {
+  return tpl("wenda", {
+    heading: ui("heading-wenda"),
+    items: book.meta.wenda
+      .map((item) =>
+        tpl("wenda-item", {
+          q: both((s) => escapeHtml(pickScript(item.q, s))),
+          a: bothBlock((s) => md(pickScript(item.a, s))),
+        }),
+      )
+      .join(""),
+  });
 }
 
 function mapGroups(book: Book): string {
@@ -283,6 +299,7 @@ export function pageShell(opts: {
       tocItems: tocItems(book),
       mapGroups: mapGroups(book),
       chapters: book.chapters.map((ch) => renderChapter(ch, book, layers)).join(""),
+      wenda: renderWenda(book),
       boot: mode === "web" ? tpl("boot", { src: "js/app.js" }) : "",
     });
   return mode === "print" ? withScript(script, html) : html();

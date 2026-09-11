@@ -96,6 +96,7 @@ Settings → Pages → Build and deployment → Source 选 **GitHub Actions**（
 - 注号可点，跳到该章校记对应条。
 - 提供「通行本第〇章 → 本书第〇章」一类对照（由各章 `maps` 汇总）。
 - 工具栏书题与封面、页签同一份 `meta.title`。
+- 书后问答来自 `meta.wenda`（至少一条）。目录有入口。网页与印刷都出；印刷另起一页。
 - 界面文案在 `web/templates/parts.html`，id 以 `ui-` 开头：一行表示繁简同形，两行则先繁后简。
 - 开关合法值在 `web/js/ui-state.js`（JSDoc 标类型），构建时原样拷到 `js/`。轴的类型用 `src/types.ts` 的 `Script` / `Dir` / `Theme`。文案对的读写在 `src/template.ts`（`parseUi` / `uiPair`）。
 

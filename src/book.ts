@@ -15,7 +15,7 @@ export function normalizeBook(data: unknown): Book {
     throw new SchemaError(["根节点必须是对象"]);
   }
   const raw = data as {
-    meta: { title: unknown };
+    meta: { title: unknown; wenda: Array<{ q: unknown; a: unknown }> };
     witnesses: string[];
     chapters: Array<Record<string, unknown>>;
   };
@@ -23,6 +23,10 @@ export function normalizeBook(data: unknown): Book {
   return {
     meta: {
       title: resolveText(raw.meta.title, "meta.title", dummy),
+      wenda: raw.meta.wenda.map((item) => ({
+        q: resolveText(item.q, "q", dummy, { allowEmpty: false }),
+        a: resolveText(item.a, "a", dummy, { allowEmpty: false }),
+      })),
     },
     witnesses: [...raw.witnesses],
     chapters: raw.chapters.map((ch) => ({

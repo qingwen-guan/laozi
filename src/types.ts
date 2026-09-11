@@ -39,8 +39,13 @@ export type Chapter = {
   anyu: Bilingual;
 };
 
+export type WendaItem = {
+  q: Bilingual;
+  a: Bilingual;
+};
+
 export type Book = {
-  meta: { title: Bilingual };
+  meta: { title: Bilingual; wenda: WendaItem[] };
   witnesses: string[];
   chapters: Chapter[];
 };

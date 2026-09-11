@@ -101,8 +101,13 @@ html[data-layer-anyu="off"] .layer-anyu {
   color: var(--muted);
 }
 
-.chapter {
+.chapter,
+.wenda {
   margin: 3rem 0 4rem;
+}
+
+.wenda-item {
+  margin: 1.8rem 0;
 }
 
 .chapter-head h2 {
@@ -193,7 +198,8 @@ html[data-layer-anyu="off"] .layer-anyu {
 .reason p,
 .zongshuo p,
 .layer-yiwen p,
-.layer-anyu p {
+.layer-anyu p,
+.wenda p {
   margin: 0.5rem 0;
   text-align: justify;
 }

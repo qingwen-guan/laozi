@@ -42,7 +42,8 @@ body {
   border: none;
 }
 
-.chapter {
+.chapter,
+.wenda {
   break-before: page;
 }
 

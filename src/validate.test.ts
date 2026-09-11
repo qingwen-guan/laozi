@@ -32,9 +32,13 @@ function sampleChapter(over: Record<string, unknown> = {}) {
   };
 }
 
+function sampleWenda() {
+  return [{ q: "为什么叫私校本", a: "未刊的私人校本。" }];
+}
+
 function sampleBook(over: Record<string, unknown> = {}) {
   return {
-    meta: { title: "老子" },
+    meta: { title: "老子", wenda: sampleWenda() },
     witnesses: ["王弼", "帛甲", "帛乙", "北大", "郭店"],
     chapters: [sampleChapter()],
     ...over,
@@ -113,6 +117,18 @@ test("同形文本规范化为 hant/hans", () => {
   const book = normalizeBook(sampleBook());
   assert.equal(book.chapters[0]?.title.hant, "上德不德");
   assert.equal(book.chapters[0]?.title.hans, "上德不德");
+  assert.equal(book.meta.wenda[0]?.q.hans, "为什么叫私校本");
+});
+
+test("meta.wenda 必填且非空", () => {
+  const missing = validateBook(sampleBook({ meta: { title: "老子" } }));
+  assert.ok(missing.some((e) => e.includes("meta.wenda：缺")));
+  const empty = validateBook(sampleBook({ meta: { title: "老子", wenda: [] } }));
+  assert.ok(empty.some((e) => e.includes("meta.wenda：必须是非空列表")));
+  const blank = validateBook(sampleBook({ meta: { title: "老子", wenda: [{ q: "", a: "答" }] } }));
+  assert.ok(blank.some((e) => e.includes("meta.wenda[0].q：不能为空")));
+  const bad = validateBook(sampleBook({ meta: { title: "老子", wenda: [{ q: "问", a: { hant: "甲" } }] } }));
+  assert.ok(bad.some((e) => e.includes("meta.wenda[0].a：文本对象必须同时有 hant 与 hans")));
 });
 
 test("语法错误带上行号与上一章 id", () => {

@@ -6,8 +6,8 @@
 </head>
 <body>
 <template id="ui-subtitle">
-判斷本 · 德經在前
-判断本 · 德经在前
+私校本 · 德經在前
+私校本 · 德经在前
 </template>
 
 <template id="ui-toc-heading">
@@ -53,6 +53,11 @@
 <template id="ui-book-word">
 本書
 本书
+</template>
+
+<template id="ui-heading-wenda">
+問答
+问答
 </template>
 
 <template id="ui-heading-jiaokan">
@@ -150,6 +155,20 @@
 <ul class="readings">{{items}}</ul>
 </template>
 
+<template id="wenda">
+<section class="wenda" id="wenda">
+  <h2>{{heading}}</h2>
+  {{items}}
+</section>
+</template>
+
+<template id="wenda-item">
+<article class="wenda-item">
+  <h3>{{q}}</h3>
+  {{a}}
+</article>
+</template>
+
 <template id="zongshuo">
 <div class="zongshuo">{{reason}}</div>
 </template>
@@ -164,6 +183,10 @@
 
 <template id="toc-item">
 <li><a href="#{{id}}"><span class="seq">{{seq}}</span>{{title}}</a></li>
+</template>
+
+<template id="toc-wenda">
+<li><a href="#wenda">{{title}}</a></li>
 </template>
 
 <template id="map-empty">

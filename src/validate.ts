@@ -2,7 +2,8 @@ import { extractNoteNumbers, isPlainObject, quote, resolveText } from "./text.js
 import { MAP_ORDER, PIANS, type Bilingual, type MapKey } from "./types.js";
 
 const TOP_KEYS = new Set(["meta", "witnesses", "chapters"]);
-const META_KEYS = new Set(["title"]);
+const META_KEYS = new Set(["title", "wenda"]);
+const WENDA_KEYS = new Set(["q", "a"]);
 const CHAPTER_KEYS = new Set(["id", "seq", "pian", "title", "maps", "baiwen", "jiaokan", "yiwen", "anyu"]);
 const JIAOKAN_KEYS = new Set(["n", "lemma", "readings", "choice", "reason"]);
 
@@ -32,6 +33,11 @@ export function validateBook(data: unknown): string[] {
     } else {
       resolveText(data.meta.title, "meta.title", errors, { allowEmpty: false });
     }
+    if (!Object.hasOwn(data.meta, "wenda")) {
+      errors.push("meta.wenda：缺");
+    } else {
+      validateWenda(data.meta.wenda, errors);
+    }
   }
 
   const witnessSet = validateWitnesses(data.witnesses, errors);
@@ -50,6 +56,33 @@ export function validateBook(data: unknown): string[] {
   });
 
   return errors;
+}
+
+function validateWenda(list: unknown, errors: string[]): void {
+  if (!Array.isArray(list) || list.length === 0) {
+    errors.push("meta.wenda：必须是非空列表");
+    return;
+  }
+  list.forEach((item, i) => {
+    const path = `meta.wenda[${i}]`;
+    if (!isPlainObject(item)) {
+      errors.push(`${path}：必须是对象`);
+      return;
+    }
+    const extra = Object.keys(item).filter((k) => !WENDA_KEYS.has(k));
+    if (extra.length) {
+      errors.push(`${path}：多了未知键${extra.map(quote).join("、")}`);
+    }
+    for (const k of WENDA_KEYS) {
+      if (!Object.hasOwn(item, k)) errors.push(`${path}.${k}：缺`);
+    }
+    if (Object.hasOwn(item, "q")) {
+      resolveText(item.q, `${path}.q`, errors, { allowEmpty: false });
+    }
+    if (Object.hasOwn(item, "a")) {
+      resolveText(item.a, `${path}.a`, errors, { allowEmpty: false });
+    }
+  });
 }
 
 function validateWitnesses(list: unknown, errors: string[]): Set<string> {

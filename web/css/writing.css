@@ -35,7 +35,8 @@ html[data-dir="v"] .toc .seq {
   margin-bottom: 0.4em;
 }
 
-html[data-dir="v"] .layer h3 {
+html[data-dir="v"] .layer h3,
+html[data-dir="v"] .wenda-item h3 {
   letter-spacing: 0.2em;
   border-bottom: none;
   border-left: 1px solid var(--rule);
@@ -45,7 +46,8 @@ html[data-dir="v"] .layer h3 {
 html[data-dir="v"] .baiwen p,
 html[data-dir="v"] .reason p,
 html[data-dir="v"] .layer-yiwen p,
-html[data-dir="v"] .layer-anyu p {
+html[data-dir="v"] .layer-anyu p,
+html[data-dir="v"] .wenda p {
   text-align: start;
   line-height: 1.95;
 }
