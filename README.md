@@ -8,8 +8,8 @@
 
 ## 文档
 
-- [动机与体例](docs/体例.md)
-- [源格式](docs/源格式.md)
-- [构建与出品](docs/构建.md)
+- [动机与体例](docs/editorial.md)
+- [源格式](docs/source.md)
+- [构建与出品](docs/build.md)
 
 源文件是 `laozi.yaml`。现在只有一章样张（上德不德），用来验收体例和版式。判断可以改。
