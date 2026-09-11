@@ -5,7 +5,9 @@ alwaysApply: true
 
 # Git
 
-Never commit. Never run mutating or destructive git commands. If one is needed, print the exact command and stop; the user types it.
+Never commit. Never run mutating or destructive git commands.
+
+If the user must run a mutating command, print it and stop. **准提** is the exception: only a blockquote message, no `git commit` command (Cursor UI).
 
 Do not run: `git add`, `git rm`, `git commit`, `git push`, `git pull`, `git merge`, `git rebase`, `git reset`, `git checkout`, `git switch`, `git restore`, `git stash`, `git clean`, `git mv`, `git tag`, or any `--force` / hook-skipping variant.
 
@@ -16,4 +18,4 @@ Read-only is fine: `git status`, `git diff`, `git log`, `git show`.
 1. `npm run fmt`
 2. `npm run lint` and `npm run typecheck`
 3. If fmt or lint fails, fix in this turn and re-run. Do not write a ready message on a red tree.
-4. Read status, diff, and recent log; write 1–2 sentences on why, matching this repo's style. If there is nothing to commit, say so.
+4. Read status, diff, and recent log; write 1–2 sentences on why, matching this repo's style. Put the message in a markdown blockquote so it is easy to find. If there is nothing to commit, say so.

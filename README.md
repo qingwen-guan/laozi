@@ -12,24 +12,4 @@
 - [源格式](docs/源格式.md)
 - [构建与出品](docs/构建.md)
 
-## 命令
-
-```bash
-npm install
-npm test
-npm run fmt
-npm run lint
-npm run typecheck
-npm run validate
-npm run build
-npm run serve
-```
-
-- `npm run build`：网页 + 默认八种 PDF
-- `npm run build:web`：只要网页
-- `npm run build:pdf`：只要默认 PDF
-- `npm run serve`：先构建网页，再在 `0.0.0.0:8765` 开静态服务
-
-网页在 `dist/web/index.html`。PDF 在 `dist/pdf/`。线上见 [构建与出品](docs/构建.md)。
-
 源文件是 `laozi.yaml`。现在只有一章样张（上德不德），用来验收体例和版式。判断可以改。

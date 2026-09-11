@@ -16,7 +16,12 @@ Sweep by invariant, not by the file in view. For each finding, grep siblings bef
 - HTML tags or UI copy built in TypeScript
 - Empty 校记 / 今译 / 按语 still emitting a headed section
 - Print pages carrying web-only attrs or a second script
+- The same fact in workflow, README, and docs (branch, Source, command lists)
 
 If that family was already swept, do not re-report the next sibling next round. That means the last review was incomplete.
 
-Do not invent work. "The next union could also be derived" is not a finding.
+After every edit, re-sweep the family before calling the review done. Re-reading only the last hunk is incomplete.
+
+Before a design with tradeoffs, write the invariants. If they conflict, pick one set. Do not satisfy the last comment by adding a knob (`if` plus `on`, extra dispatch, tighter permissions than the official template). Prefer the smallest official recipe that meets the invariants.
+
+Do not invent work. "The next union could also be derived" is not a finding. That ban does not excuse skipping the sibling grep.
