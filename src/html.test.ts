@@ -89,10 +89,8 @@ test("印刷只出一套用字，网页保留两套", () => {
     cssHrefs: ["css/book.css"],
   });
   assert.doesNotMatch(print, /script-hans/);
-  assert.doesNotMatch(print, /德经在前/);
   assert.doesNotMatch(print, /本书/);
   assert.match(print, /class="wenda"/);
-  assert.match(print, /私校本 · 德經在前/);
   assert.match(print, /本書/);
   const web = pageShell({
     book,
@@ -106,6 +104,23 @@ test("印刷只出一套用字，网页保留两套", () => {
   assert.match(web, /script-hant/);
   assert.match(web, /script-hans/);
   assert.equal([...web.matchAll(/class="map-group"/g)].length, 4);
+});
+
+test("封面副标只写私校本", () => {
+  const opts = {
+    book,
+    script: "hant" as const,
+    dir: "h" as const,
+    theme: "modern" as const,
+    layers: "full" as const,
+    cssHrefs: ["css/book.css"],
+  };
+  const print = pageShell({ ...opts, mode: "print" });
+  const web = pageShell({ ...opts, mode: "web" });
+  const subtitle = (html: string) => html.match(/<p class="subtitle">([\s\S]*?)<\/p>/)?.[1] ?? "";
+  assert.equal(subtitle(print), "私校本");
+  assert.match(subtitle(web), /script-hant">私校本</);
+  assert.match(subtitle(web), /script-hans">私校本</);
 });
 
 test("书后问答网页与印刷都出", () => {
