@@ -25,3 +25,5 @@ After every edit, re-sweep the family before calling the review done. Re-reading
 Before a design with tradeoffs, write the invariants. If they conflict, pick one set. Do not satisfy the last comment by adding a knob (`if` plus `on`, extra dispatch, tighter permissions than the official template). Prefer the smallest official recipe that meets the invariants.
 
 Do not invent work. "The next union could also be derived" is not a finding. That ban does not excuse skipping the sibling grep.
+
+When the review is done and nothing is left unfixed, continue with 准提 (git rule). Do not stop at "no findings."

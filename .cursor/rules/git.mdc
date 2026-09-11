@@ -13,7 +13,7 @@ Do not run: `git add`, `git rm`, `git commit`, `git push`, `git pull`, `git merg
 
 Read-only is fine: `git status`, `git diff`, `git log`, `git show`.
 
-**准提** means format, lint, then write a commit message. Do not commit.
+**准提** means format, lint, then write a commit message. Do not commit. A finished review with nothing left to fix is 准提.
 
 1. `npm run fmt`
 2. `npm run lint` and `npm run typecheck`
