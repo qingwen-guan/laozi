@@ -37,7 +37,7 @@ function documentedScripts(block: string): string[] {
   return names;
 }
 
-test("Node 版本只在 engines，工作流读 package.json", () => {
+test("工作流用 package.json 里的 Node 版本", () => {
   const pkg = JSON.parse(read("package.json")) as { engines?: { node?: string } };
   assert.equal(typeof pkg.engines?.node, "string");
   assert.ok(pkg.engines?.node);
@@ -47,7 +47,7 @@ test("Node 版本只在 engines，工作流读 package.json", () => {
   assert.doesNotMatch(workflow, /^\s*node-version:/m);
 });
 
-test("npm 命令表只在构建文档，且与 scripts 对齐", () => {
+test("构建文档列出全部 npm 脚本，README 不重复", () => {
   const pkg = JSON.parse(read("package.json")) as { scripts: Record<string, string> };
   const scripts = Object.keys(pkg.scripts).sort();
   const documented = documentedScripts(commandFence(read("docs/build.md"))).sort();

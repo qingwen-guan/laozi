@@ -18,4 +18,4 @@ Read-only is fine: `git status`, `git diff`, `git log`, `git show`.
 1. `npm run fmt`
 2. `npm run lint` and `npm run typecheck`
 3. If fmt or lint fails, fix in this turn and re-run. Do not write a ready message on a red tree.
-4. Read status, diff, and recent log; write 1–2 sentences on why, matching this repo's style. Put the message in a markdown blockquote so it is easy to find. If there is nothing to commit, say so.
+4. Read status, diff, and recent log; write 1–2 sentences on why, matching this repo's style. Say what is true now. Do not narrate tests as a lock, and do not write 锁住 / 对齐 / 只列一次 / 同一处. Put the message in a markdown blockquote so it is easy to find. If there is nothing to commit, say so.

@@ -2,9 +2,7 @@
 
 源只有 `laozi.yaml`。网页和 PDF 都从它来。
 
-需要 Node；版本写在 `package.json` 的 `engines.node`。工作流读同一处。
-
-命令只列这一次：
+需要 Node，版本见 `package.json` 的 `engines.node`。
 
 ```bash
 npm install
