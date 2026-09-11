@@ -321,9 +321,6 @@ export function parsePdfCombo(name: string): PdfCombo {
   const layers = (m[2] === "full" ? "full" : "text") as Layers;
   const dir = m[3] as Dir;
   const theme: Theme = m[4] ? "xianzhuang" : "modern";
-  if (dir === "h" && theme === "xianzhuang") {
-    throw new Error("线装只用于竖版");
-  }
   return { script, layers, dir, theme };
 }
 
@@ -331,9 +328,11 @@ function allLegalPdfs(): PdfCombo[] {
   const out: PdfCombo[] = [];
   for (const script of ["hant", "hans"] as const) {
     for (const layers of ["full", "text"] as const) {
-      out.push({ script, layers, dir: "h", theme: "modern" });
-      out.push({ script, layers, dir: "v", theme: "modern" });
-      out.push({ script, layers, dir: "v", theme: "xianzhuang" });
+      for (const dir of ["h", "v"] as const) {
+        for (const theme of ["modern", "xianzhuang"] as const) {
+          out.push({ script, layers, dir, theme });
+        }
+      }
     }
   }
   return out;

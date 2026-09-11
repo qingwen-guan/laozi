@@ -36,7 +36,7 @@ test("parseStoredUi 拒坏 JSON 和非对象", () => {
   assert.deepEqual(parseStoredUi('{"script":"hans"}'), { script: "hans" });
 });
 
-test("查询与存储用同一套 flag，横排逼成现代", () => {
+test("查询与存储用同一套 flag，横排可留线装", () => {
   assert.equal(readUiState(new URLSearchParams("jiaokan=false"), {}).jiaokan, false);
   const q = new URLSearchParams("script=nope&jiaokan=0&dir=h&theme=xianzhuang");
   const state = readUiState(q, { script: "hans", yiwen: false, theme: "xianzhuang" });
@@ -44,7 +44,7 @@ test("查询与存储用同一套 flag，横排逼成现代", () => {
     ...UI_DEFAULTS,
     script: "hans",
     dir: "h",
-    theme: "modern",
+    theme: "xianzhuang",
     jiaokan: false,
     yiwen: false,
   });
@@ -63,12 +63,12 @@ test("层属性名从 UI_LAYERS 推导", () => {
   );
 });
 
-test("工具栏改动：脏值忽略，横排改现代", () => {
+test("工具栏改动：脏值忽略，换方向不改外观", () => {
   const start = { ...UI_DEFAULTS, script: "hans" as const, dir: "v" as const, theme: "xianzhuang" as const };
   assert.equal(applyToolbarChange(start, "script", "nope", true).script, "hans");
   const across = applyToolbarChange(start, "dir", "h", true);
   assert.equal(across.dir, "h");
-  assert.equal(across.theme, "modern");
+  assert.equal(across.theme, "xianzhuang");
   assert.equal(applyToolbarChange(start, "layer", "jiaokan", false).jiaokan, false);
   assert.equal(applyToolbarChange(start, "layer", "nope", false).jiaokan, true);
 });

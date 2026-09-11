@@ -156,6 +156,12 @@ test("网页写出两套书题供页签与工具栏共用", () => {
   assert.match(html, /data-layer-jiaokan="on"/);
   assert.match(html, /data-layer-yiwen="on"/);
   assert.match(html, /data-layer-anyu="on"/);
+  assert.match(
+    html,
+    /<main class="book">[\s\S]*class="cover"[\s\S]*class="toc"[\s\S]*class="map-index"[\s\S]*class="chapter"[\s\S]*class="wenda"/,
+  );
+  assert.doesNotMatch(html, /data-theme-set/);
+  assert.doesNotMatch(html, /data-slides/);
 });
 
 test("详本空层不输出空壳", () => {
@@ -204,18 +210,20 @@ test("印刷页不带网页用的 data-title 与 data-layer", () => {
   });
   assert.doesNotMatch(html, /data-title-hant/);
   assert.doesNotMatch(html, /data-layer-jiaokan/);
+  assert.doesNotMatch(html, /data-slides/);
+  assert.doesNotMatch(html, /is-current/);
 });
 
-test("合法 PDF 组合十二种，默认从全表筛", () => {
-  assert.equal(ALL_PDFS.length, 12);
-  assert.equal(DEFAULT_PDFS.length, 8);
+test("合法 PDF 组合十六种，默认从全表筛", () => {
+  assert.equal(ALL_PDFS.length, 16);
+  assert.equal(DEFAULT_PDFS.length, 10);
   assert.ok(DEFAULT_PDFS.every((c) => ALL_PDFS.some((a) => pdfFileName(a) === pdfFileName(c))));
-  assert.ok(ALL_PDFS.every((c) => !(c.dir === "h" && c.theme === "xianzhuang")));
+  assert.ok(ALL_PDFS.some((c) => c.dir === "h" && c.theme === "xianzhuang"));
 });
 
 test("PDF 开关互斥", () => {
-  assert.equal(resolvePdfCombos({ pdf: false, allPdf: false, combos: [] }).length, 8);
-  assert.equal(resolvePdfCombos({ pdf: false, allPdf: true, combos: [] }).length, 12);
+  assert.equal(resolvePdfCombos({ pdf: false, allPdf: false, combos: [] }).length, 10);
+  assert.equal(resolvePdfCombos({ pdf: false, allPdf: true, combos: [] }).length, 16);
   assert.throws(() => resolvePdfCombos({ pdf: true, allPdf: true, combos: [] }), /只能用一种/);
   assert.throws(
     () =>
@@ -228,14 +236,19 @@ test("PDF 开关互斥", () => {
   );
 });
 
-test("parsePdfCombo 认文件名，拒横版线装", () => {
+test("parsePdfCombo 认文件名，含横版线装", () => {
   assert.deepEqual(parsePdfCombo("laozi-hant-full-v-xianzhuang.pdf"), {
     script: "hant",
     layers: "full",
     dir: "v",
     theme: "xianzhuang",
   });
+  assert.deepEqual(parsePdfCombo("hant-full-h-xianzhuang"), {
+    script: "hant",
+    layers: "full",
+    dir: "h",
+    theme: "xianzhuang",
+  });
   assert.equal(pdfFileName(parsePdfCombo("hans-text-h")), "laozi-hans-text-h.pdf");
-  assert.throws(() => parsePdfCombo("hant-full-h-xianzhuang"), /线装只用于竖版/);
   assert.throws(() => parsePdfCombo("nope"), /不能识别/);
 });

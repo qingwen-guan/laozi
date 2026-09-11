@@ -74,8 +74,7 @@ export function layerDatasetProp(key) {
 export function readUiState(query, stored, defaults = UI_DEFAULTS) {
   const script = pick(query.get("script"), UI_SCRIPTS, pick(stored.script, UI_SCRIPTS, defaults.script));
   const dir = pick(query.get("dir"), UI_DIRS, pick(stored.dir, UI_DIRS, defaults.dir));
-  let theme = pick(query.get("theme"), UI_THEMES, pick(stored.theme, UI_THEMES, defaults.theme));
-  if (dir === "h") theme = "modern";
+  const theme = pick(query.get("theme"), UI_THEMES, pick(stored.theme, UI_THEMES, defaults.theme));
   const layers = /** @type {Record<UiLayer, boolean>} */ (
     Object.fromEntries(
       UI_LAYERS.map((key) => {
@@ -99,10 +98,7 @@ export function readUiState(query, stored, defaults = UI_DEFAULTS) {
 export function applyToolbarChange(state, name, value, checked) {
   const next = { ...state };
   if (name === "script") next.script = pick(value, UI_SCRIPTS, state.script);
-  if (name === "dir") {
-    next.dir = pick(value, UI_DIRS, state.dir);
-    if (next.dir === "h") next.theme = "modern";
-  }
+  if (name === "dir") next.dir = pick(value, UI_DIRS, state.dir);
   if (name === "theme") next.theme = pick(value, UI_THEMES, state.theme);
   if (name === "layer" && /** @type {readonly string[]} */ (UI_LAYERS).includes(value)) {
     next[/** @type {UiLayer} */ (value)] = checked;

@@ -48,10 +48,6 @@
   margin-right: 0.15rem;
 }
 
-.toolbar .is-disabled {
-  opacity: 0.45;
-}
-
 html[data-dir="v"] .toolbar {
   position: sticky;
   left: 0;
